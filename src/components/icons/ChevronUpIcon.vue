@@ -16,7 +16,7 @@ export default defineComponent({
     },
     size: {
       type: Number,
-      default: 24
+      default: 26
     }
   },
 })

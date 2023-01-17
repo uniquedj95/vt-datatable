@@ -30,13 +30,9 @@ export default defineComponent({
   },
   emits: ["sort"],
   setup(props) {
-    const refreshKey = ref(Math.random());
-    const activeIconColor = "#0275d8"; // blue
+    const activeIconColor = "red"; // blue
     const defaultIconColor = "#343434" // gray
-    watch(() => props.sortQuery, () => refreshKey.value++, { deep: true });
-
     return {
-      refreshKey,
       activeIconColor,
       defaultIconColor
     }
@@ -45,7 +41,7 @@ export default defineComponent({
 </script>
 
 <template>
-  <thead :class="theme" :key="refreshKey">
+  <thead :class="theme">
     <tr>
       <th v-for="column in columns" :key="column.id" class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
         <div class="flex items-center th-cell" :class="{
@@ -56,8 +52,8 @@ export default defineComponent({
         }" @click="column.sortable !== false ? $emit('sort', column) : null">
           <span>{{ column.label }}</span>
           <div v-if="column.sortable !== false" class="flex flex-col ml-1">
-            <ChevronUpIcon class="w-3 h-3 -mb-1" stroke-width="5" :color="column.id === sortQuery?.column?.id && sortQuery.order === 'asc' ? activeIconColor : defaultIconColor" />
-            <ChevronDownIcon class="w-3 h-3" stroke-width="5" :color="column.id === sortQuery?.column?.id && sortQuery.order === 'desc'? activeIconColor : defaultIconColor" />
+            <ChevronUpIcon class="w-3 h-3 -mb-1" :color="column.id === sortQuery?.column?.id && sortQuery.order === 'asc' ? activeIconColor : defaultIconColor" />
+            <ChevronDownIcon class="w-3 h-3" :color="column.id === sortQuery?.column?.id && sortQuery.order === 'desc'? activeIconColor : defaultIconColor" />
           </div>
         </div>
       </th>
