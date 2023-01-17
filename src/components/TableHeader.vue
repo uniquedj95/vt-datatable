@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, PropType, ref, watch } from 'vue';
+import { defineComponent, PropType } from 'vue';
 import { SortQuery, TableColumn, TableConfig } from '../interfaces';
 import ChevronDownIcon from './icons/ChevronDownIcon.vue'; 
 import ChevronUpIcon from './icons/ChevronUpIcon.vue'; 
