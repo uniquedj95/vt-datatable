@@ -29,7 +29,7 @@ export default defineComponent({
     }
   },
   emits: ["sort"],
-  setup(props) {
+  setup() {
     const activeIconColor = "red"; // blue
     const defaultIconColor = "#343434" // gray
     return {
