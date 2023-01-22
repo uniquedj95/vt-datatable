@@ -12,8 +12,12 @@ export function getValue (object: Record<string, any>, path: string, defaultValu
   return value
 }
 
+export function getColumnValue (column: TableColumn, row: TableRow) {
+  return typeof column.value === 'function' ? column.value(row) : getValue(row, column.value, "")
+}
+
 export function getSortValue(column: TableColumn, row: TableRow) {
-  let value = typeof column.value === 'function' ? column.value(row) : getValue(row, column.value, "")
+  let value = getColumnValue(column, row);
   if (typeof column.preSort === "function") value = column.preSort(value);
   if (typeof value === "number" || column.sortCaseSensitive) return value
   return value.toString().toLowerCase();
