@@ -41,7 +41,7 @@ export default defineComponent({
       <td 
         v-for="column in columns" 
         :key="column.id"
-        class="px-6 py-4 whitespace-no-wrap text-gray-700 td-cell"
+        class="px-6 py-4 whitespace-no-wrap text-gray-700 td-cell text-xs leading-3"
         :class="{
           'text-right': column.align === 'end',
           'text-left': column.align === 'start',
