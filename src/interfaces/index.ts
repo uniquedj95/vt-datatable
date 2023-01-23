@@ -13,7 +13,7 @@ export interface TableColumn {
   drillable?: boolean;
   slotName?: string;
   preSort?: (value: any) => any;
-  align?: "left" | "right" | "center";
+  align?: "start" | "end" | "center";
 }
 
 export interface SortQuery {
@@ -28,7 +28,7 @@ export interface TableConfig {
   refreshable?: boolean;
   paginate?: boolean;
   indexedRows?: boolean;
-  theme?: "primary" | "secondary" | "tertiary" | "success" | "warning" | "danger" | "light" | "dark" | "medium" | "custom";
+  theme?: "primary" | "secondary" | "info" | "success" | "warning" | "danger" | "light" | "dark" | "custom";
 }
 
 export interface PaginationBtn {
