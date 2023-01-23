@@ -1,5 +1,5 @@
 <script lang="ts">
-import { computed, defineComponent } from 'vue'
+import { defineComponent } from 'vue'
 import ChevronUpIcon from './ChevronUpIcon.vue'
 
 export default defineComponent({
