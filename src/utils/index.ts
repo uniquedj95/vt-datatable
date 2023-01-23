@@ -6,7 +6,7 @@ export function getValue (object: Record<string, any>, path: string, defaultValu
   let value = object;
   for (let key of path.split('.') as Array<any>) {
     if(Array.isArray(value) && !isNaN(parseInt(key))) key = parseInt(key)
-    if(value.hasOwnProperty(key)) value = value[key]
+    if(Object.prototype.hasOwnProperty.call(value, key)) value = value[key]
     else return defaultValue;
   }
   return value
