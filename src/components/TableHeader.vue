@@ -1,5 +1,5 @@
 <script lang="ts">
-import { defineComponent, PropType } from 'vue';
+import { computed, defineComponent, PropType } from 'vue';
 import { SortQuery, TableColumn, TableConfig } from '../interfaces';
 import ChevronDownIcon from './icons/ChevronDownIcon.vue'; 
 import ChevronUpIcon from './icons/ChevronUpIcon.vue'; 
@@ -17,7 +17,7 @@ export default defineComponent({
     },
     theme: {
       type: String as PropType<TableConfig["theme"]>,
-      defualt: "custom"
+      defualt: "primary"
     },
     hasRowActionBtns: {
       type: Boolean,
@@ -29,9 +29,9 @@ export default defineComponent({
     }
   },
   emits: ["sort"],
-  setup() {
-    const activeIconColor = "red"; // blue
-    const defaultIconColor = "#343434" // gray
+  setup(props) {
+    const activeIconColor = computed(() => props.theme?.match('primary') ? '#111827' : '#3B71CA')
+    const defaultIconColor = computed(() => props.theme?.match('light') ? '#9FA6B2' : '#FBFBFB')
     return {
       activeIconColor,
       defaultIconColor
@@ -41,13 +41,13 @@ export default defineComponent({
 </script>
 
 <template>
-  <thead :class="theme">
-    <tr>
-      <th v-for="column in columns" :key="column.id" class="px-6 py-3 border-b border-gray-200 bg-gray-50 text-left text-xs leading-4 font-medium text-gray-500 uppercase tracking-wider">
+  <thead>
+    <tr :class="theme">
+      <th v-for="column in columns" :key="column.id" class="px-6 py-3 border-b border-gray-200 text-left text-xs leading-4 font-medium uppercase tracking-wider">
         <div class="flex items-center th-cell" :class="{
           'cursor-pointer select-none': column.sortable !== false,
-          'justify-end': column.align === 'right',
-          'justify-start': column.align === 'left',
+          'justify-end': column.align === 'end',
+          'justify-start': column.align === 'start',
           'justify-center': column.align === 'center',
         }" @click="column.sortable !== false ? $emit('sort', column) : null">
           <span>{{ column.label }}</span>
