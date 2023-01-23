@@ -28,6 +28,7 @@ export interface TableConfig {
   refreshable?: boolean;
   paginate?: boolean;
   indexedRows?: boolean;
+  stickyTop?: boolean;
   theme?: "primary" | "secondary" | "info" | "success" | "warning" | "danger" | "light" | "dark" | "custom";
 }
 
