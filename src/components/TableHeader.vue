@@ -26,12 +26,16 @@ export default defineComponent({
     sortQuery: {
       type: Object as PropType<SortQuery>,
       default: () => ({})
+    },
+    bordered: {
+      type: Boolean,
+      default: true
     }
   },
   emits: ["sort"],
   setup(props) {
-    const activeIconColor = computed(() => props.theme?.match('primary') ? '#111827' : '#3B71CA')
-    const defaultIconColor = computed(() => props.theme?.match('light') ? '#9FA6B2' : '#FBFBFB')
+    const activeIconColor = computed(() => props.theme?.match('light') ? '#332D2D' : '#FBFBFB')
+    const defaultIconColor = computed(() => props.theme?.match('light') ? '#9FA6B2' : '#332D2D')
     return {
       activeIconColor,
       defaultIconColor
@@ -43,7 +47,7 @@ export default defineComponent({
 <template>
   <thead>
     <tr :class="theme">
-      <th v-for="column in columns" :key="column.id" class="px-6 py-3 border-b border-gray-200 text-left text-xs leading-4 font-medium uppercase tracking-wider">
+      <th v-for="column in columns" :key="column.id" class="px-6 py-3 border-b border-gray-200 text-left text-xs leading-4 font-medium uppercase tracking-wider" :class="{'border border-gray-200': bordered}">
         <div class="flex items-center th-cell" :class="{
           'cursor-pointer select-none': column.sortable !== false,
           'justify-end': column.align === 'end',

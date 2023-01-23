@@ -27,7 +27,7 @@ module.exports = {
         },
         '.secondary': { 
           'background-color': '#9FA6B2', 
-          color: 'black' 
+          color: 'white' 
         },
         '.success': { 
           'background-color': '#14A44D', 
