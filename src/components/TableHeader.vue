@@ -51,13 +51,19 @@ export default defineComponent({
 <template>
   <thead :class="{ 'sticky top-0': stickyTop }">
     <tr :class="theme">
-      <th v-for="column in columns" :key="column.id" class="px-6 py-3 border-b border-gray-200 text-left text-sm leading-5 font-medium uppercase tracking-wider" :class="{'border border-gray-200': bordered}">
+      <th 
+        v-for="column in columns" 
+        :key="column.id" 
+        class="px-6 py-3 border-b border-gray-200 text-left text-sm leading-5 font-medium uppercase tracking-wider" 
+        :class="{'border border-gray-200': bordered}"
+        @click="column.sortable !== false ? $emit('sort', column) : null"
+      >
         <div class="flex items-center th-cell" :class="{
           'cursor-pointer select-none': column.sortable !== false,
           'justify-end': column.align === 'end',
           'justify-start': column.align === 'start',
           'justify-center': column.align === 'center',
-        }" @click="column.sortable !== false ? $emit('sort', column) : null">
+        }">
           <span>{{ column.label }}</span>
           <div v-if="column.sortable !== false" class="flex flex-col ml-1">
             <ChevronUpIcon class="w-3 h-3 -mb-1" :color="column.id === sortQuery?.column?.id && sortQuery.order === 'asc' ? activeIconColor : defaultIconColor" />
