@@ -17,7 +17,7 @@ export default defineComponent({
     },
     theme: {
       type: String as PropType<TableConfig["theme"]>,
-      defualt: "primary"
+      defualt: "light"
     },
     hasRowActionBtns: {
       type: Boolean,
