@@ -55,7 +55,7 @@ export default defineComponent({
         v-for="column in columns" 
         :key="column.id" 
         class="px-6 py-3 border-b border-gray-200 text-left text-sm leading-5 font-medium uppercase tracking-wider" 
-        :class="{'border border-gray-200': bordered}"
+        :class="{'border': bordered}"
         @click="column.sortable !== false ? $emit('sort', column) : null"
       >
         <div class="flex items-center th-cell" :class="{
