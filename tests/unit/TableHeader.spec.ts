@@ -52,6 +52,12 @@ describe('TableHeader', () => {
     expect(ths.at(2).text()).toBe('Actions')
   })
 
+  it('should not render actions column when hasRowActionsBtns is false', async () => {
+    await wrapper.setProps({ hasRowActionBtns: false });
+    const ths = wrapper.findAll('th')
+    expect(ths.length).toBe(2);
+  })
+
   it("should render correct theme color", async () => {
     await wrapper.setProps({ theme: "primary" });
     const tr = wrapper.find('tr');
